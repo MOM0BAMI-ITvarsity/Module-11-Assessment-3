@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        
+        <title>Mini Blog</title>
+        
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/custom.css">
+        <link href="fontAwesome/css/all.css" rel="stylesheet">
+    </head>
+    <body onload="init()">
+        <header class="bg-primary text-white sticky-top shadow-sm">
+            <div class="container d-flex justify-content-between align-items-center py-2">
+                <img src="img/mini-blog-logo.png" height="40" alt="Mini Blog Logo"/>
+                <nav class="d-flex">
+                    <a id="getLatest" class="btn btn-outline-light mx-1" href="#">Latest</a>
+                    <a id="getAll" class="btn btn-outline-light mx-1 active" href="#">All</a>
+                    <a id="getPopular" class="btn btn-outline-light mx-1" href="#">Popular</a>
+                </nav>
+            </div>
+        </header>
+        
+        <section class="blog-header text-center my-5">
+            <h1>Is it Beautiful?</h1>
+            <p class="lead text-muted">The latest <strong>Tech</strong>, <strong>Design</strong>, and <strong>Development</strong> news from around the world.</p>
+        </section>
+        
+        <section class="container text-center mb-5 team">
+            <div class="row">
+                <!-- Dynamically loaded team members with captions -->
+                <div class="col">
+                    <img src="img/thandi.jpg" class="img-thumbnail rounded-circle" width="90" alt="Thandi" title="Thandi">
+                    <p>Thandi</p>
+                </div>
+                <!-- Repeat similar divs for other team members -->
+            </div>
+        </section>
+        
+        <div class="container">
+            <div class="row" id="posts">
+                <!-- Posts will be dynamically inserted here -->
+            </div>
+        </div>
+        
+        <script src="js/jquery-3.4.1.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script>
+            var rootPath = "https://mysite.itvarsity.org/api/mini-blog/";
+
+            function init(){
+                document.getElementById("getAll").addEventListener('click', getAllPosts);
+                document.getElementById("getPopular").addEventListener('click', getPopularPosts);
+                document.getElementById("getLatest").addEventListener('click', getLatestPosts);
+                
+                getAllPosts();
+            }
+            
+            function getAllPosts(){
+                fetchPosts("getAll");
+                setActiveLink("getAll");
+            }
+            
+            function getPopularPosts(){
+                fetchPosts("getPopular");
+                setActiveLink("getPopular");
+            }
+            
+            function getLatestPosts(){
+                fetchPosts("getLatest");
+                setActiveLink("getLatest");
+            }
+            
+            function fetchPosts(category){
+                fetch(`${rootPath}get-posts/?category=${category}`)
+                    .then(response => response.json())
+                    .then(data => displayPosts(data))
+                    .catch(err => console.error('Error fetching posts:', err));
+            }
+            
+            function displayPosts(data){
+                let output = "";
+
+                data.forEach(post => {
+                    output += `
+                        <div class="col-md-4 mb-4">
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-header">
+                                    <h4 class="my-0 font-weight-normal">${post[0]}</h4>
+                                </div>
+                                <div class="card-body">
+                                    <img src="${rootPath}/uploads/${post[3]}" class="card-img-top" alt="${post[0]}"/>
+                                    <p class="card-text text-truncate">${post[1]}</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-lg btn-link"><i class="far fa-heart"></i></button>
+                                            <button type="button" class="btn btn-lg btn-link"><i class="far fa-comment"></i></button>
+                                            <button type="button" class="btn btn-lg btn-link"><i class="fa fa-retweet"></i></button>
+                                        </div>
+                                        <small class="text-muted">${post[2]}</small>
+                                    </div>
+                                    <a href="#" class="btn btn-primary mt-3">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                document.getElementById("posts").innerHTML = output;
+            }
+            
+            function setActiveLink(id){
+                ["getAll", "getPopular", "getLatest"].forEach(linkId => {
+                    document.getElementById(linkId).classList.remove("active");
+                });
+                document.getElementById(id).classList.add("active");
+            }
+        </script>
+    </body>
+</html>

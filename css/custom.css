@@ -1,0 +1,202 @@
+/* Header Section */
+header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.5rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header img {
+    margin-right: 10px;
+}
+
+header nav a {
+    color: #fff;
+    transition: color 0.2s;
+}
+
+header nav a:hover,
+header nav a.active {
+    color: #ffc107;
+    border-bottom: 2px solid #ffc107;
+}
+
+/* Blog Header */
+.blog-header {
+    margin-top: 2rem;
+    text-align: center;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem;
+    color: #343a40;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.blog-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.blog-header p {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+/* Container */
+.container {
+    max-width: 960px;
+}
+
+/* Team Section */
+.team {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.team img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.team img:hover {
+    transform: scale(1.1);
+}
+
+.team p {
+    font-size: 0.85rem;
+    color: #6c757d;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+/* Post Cards */
+.card {
+    border: none;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    background-color: #f1f1f1;
+    font-weight: bold;
+    font-size: 1.25rem;
+    padding: 1rem;
+    border-bottom: none;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+.card-body {
+    padding: 1.25rem;
+    background-color: #fff;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+/* Improved Post Image Styling */
+.card-body img {
+    max-height: 200px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    border: 3px solid #f1f1f1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-body img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-text {
+    color: #495057;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    display: block; /* Fallback */
+    line-clamp: 3; /* Standard property for future compatibility */
+}
+
+/* Buttons in Card */
+.card .btn-group button {
+    color: #6c757d;
+    font-size: 1.25rem;
+    transition: color 0.3s ease;
+}
+
+.card .btn-group button:hover {
+    color: #007bff;
+}
+
+.card-body .btn-primary {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.card-body .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Footer */
+.footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 2rem 0;
+    text-align: center;
+    font-size: 0.85rem;
+    margin-top: 2rem;
+    border-top: 2px solid #007bff;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #ced4da;
+}
+
+/* Media Queries */
+@media (max-width: 576px) {
+    .team img {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .blog-header h1 {
+        font-size: 1.75rem;
+    }
+    
+    .card-text {
+        -webkit-line-clamp: 2;
+        line-clamp: 2; /* Standard property for future compatibility */
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
